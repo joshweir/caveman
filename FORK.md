@@ -9,13 +9,14 @@ so caveman mode, its hooks and `/caveman <level>` all work as upstream.
 - `.claude-plugin/plugin.json` gains `"agents": []`, which stops Claude Code
   auto-loading `agents/`. The agent files stay on disk, unread.
 - Deleted: `skills/cavecrew`, `skills/caveman-commit`, `skills/caveman-review`,
-  `skills/caveman-stats`, and the matching `commands/caveman-*` files.
-- Kept: `skills/caveman`, `skills/caveman-compress`, `skills/caveman-help`,
-  `commands/caveman.md`, both hooks.
+  `skills/caveman-stats`, `skills/caveman-help`, and the matching
+  `commands/caveman-*` files.
+- Kept: `skills/caveman`, `skills/caveman-compress`, `commands/caveman.md`,
+  both hooks.
 
-Gone with them: the `/caveman-commit`, `/caveman-review`, `/caveman-stats` and
-`/caveman-init` slash commands. Run `git checkout upstream/main -- <path>` to get
-one back.
+Gone with them: the `/caveman-commit`, `/caveman-review`, `/caveman-stats`,
+`/caveman-init` and `/caveman-help` slash commands. Run
+`git checkout upstream/main -- <path>` to get one back.
 
 ## Tracking upstream
 
