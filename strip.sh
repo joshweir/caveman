@@ -5,7 +5,7 @@
 set -e
 cd "$(dirname "$0")"
 
-KEEP_SKILLS="caveman caveman-compress"
+KEEP_SKILLS="caveman"
 
 # `agents: []` stops the agents/ directory being auto-loaded at all.
 node -e 'const fs=require("fs"),f=".claude-plugin/plugin.json",j=JSON.parse(fs.readFileSync(f,"utf8"));j.agents=[];fs.writeFileSync(f,JSON.stringify(j,null,2)+"\n")'
@@ -22,4 +22,4 @@ for c in commands/*; do
 done
 
 # Check: agents gone, only whitelisted skills left.
-node -e 'const fs=require("fs");const a=JSON.parse(fs.readFileSync(".claude-plugin/plugin.json","utf8")).agents;if(!Array.isArray(a)||a.length)throw new Error("agents not emptied");const left=fs.readdirSync("skills").sort().join(" ");if(left!=="caveman caveman-compress")throw new Error("unexpected skills: "+left);console.log("strip ok: agents [] , skills "+left)'
+node -e 'const fs=require("fs");const a=JSON.parse(fs.readFileSync(".claude-plugin/plugin.json","utf8")).agents;if(!Array.isArray(a)||a.length)throw new Error("agents not emptied");const left=fs.readdirSync("skills").sort().join(" ");if(left!=="caveman")throw new Error("unexpected skills: "+left);console.log("strip ok: agents [] , skills "+left)'

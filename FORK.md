@@ -8,14 +8,12 @@ so caveman mode, its hooks and `/caveman <level>` all work as upstream.
 
 - `.claude-plugin/plugin.json` gains `"agents": []`, which stops Claude Code
   auto-loading `agents/`. The agent files stay on disk, unread.
-- Deleted: `skills/cavecrew`, `skills/caveman-commit`, `skills/caveman-review`,
-  `skills/caveman-stats`, `skills/caveman-help`, and the matching
-  `commands/caveman-*` files.
-- Kept: `skills/caveman`, `skills/caveman-compress`, `commands/caveman.md`,
-  both hooks.
+- Deleted: every `skills/` directory but `skills/caveman`, and every
+  `commands/caveman-*` file.
+- Kept: `skills/caveman`, `commands/caveman.md`, both hooks.
 
 Gone with them: the `/caveman-commit`, `/caveman-review`, `/caveman-stats`,
-`/caveman-init` and `/caveman-help` slash commands. Run
+`/caveman-init`, `/caveman-help` and `/caveman-compress` slash commands. Run
 `git checkout upstream/main -- <path>` to get one back.
 
 ## Tracking upstream
@@ -49,6 +47,6 @@ and needs no re-enabling. After a push:
 
 ```sh
 claude plugin marketplace update caveman
-claude plugin update caveman
-claude plugin details caveman   # component inventory and token cost
+claude plugin update caveman@caveman   # bare `caveman` reports "Plugin not found"
+claude plugin details caveman          # component inventory and token cost
 ```
