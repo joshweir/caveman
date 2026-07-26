@@ -5,7 +5,10 @@
 set -e
 cd "$(dirname "$0")"
 
-KEEP_SKILLS="caveman"
+# Empty: the hooks carry the mode rules, and commands/caveman.md carries
+# /caveman <level>. No skill is needed for either.
+KEEP_SKILLS=""
+export KEEP_SKILLS
 
 # `agents: []` stops the agents/ directory being auto-loaded at all.
 node -e 'const fs=require("fs"),f=".claude-plugin/plugin.json",j=JSON.parse(fs.readFileSync(f,"utf8"));j.agents=[];fs.writeFileSync(f,JSON.stringify(j,null,2)+"\n")'
@@ -22,4 +25,4 @@ for c in commands/*; do
 done
 
 # Check: agents gone, only whitelisted skills left.
-node -e 'const fs=require("fs");const a=JSON.parse(fs.readFileSync(".claude-plugin/plugin.json","utf8")).agents;if(!Array.isArray(a)||a.length)throw new Error("agents not emptied");const left=fs.readdirSync("skills").sort().join(" ");if(left!=="caveman")throw new Error("unexpected skills: "+left);console.log("strip ok: agents [] , skills "+left)'
+node -e 'const fs=require("fs");const a=JSON.parse(fs.readFileSync(".claude-plugin/plugin.json","utf8")).agents;if(!Array.isArray(a)||a.length)throw new Error("agents not emptied");const left=fs.existsSync("skills")?fs.readdirSync("skills").sort().join(" "):"";if(left!==process.env.KEEP_SKILLS.trim())throw new Error("unexpected skills: "+left);if(!fs.existsSync("commands/caveman.md"))throw new Error("commands/caveman.md missing - /caveman would stop working");console.log("strip ok: agents [] , skills ["+left+"]")'
