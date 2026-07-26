@@ -21,6 +21,11 @@ and writes the level flag on its own. Keep `commands/caveman.md` though:
 without a registered command, Claude Code answers `/caveman` with
 "Unknown command" and the prompt never reaches the hook.
 
+`strip.sh` also adds `disable-model-invocation: true` to that command, which
+drops it from the model's listing and costs nothing in context. You still type
+`/caveman:caveman <level>` as before. The namespaced form is the one that
+resolves; bare `/caveman` reports "Unknown command", upstream included.
+
 ## Tracking upstream
 
 Do not merge. The deletions collide with every upstream edit to those files.

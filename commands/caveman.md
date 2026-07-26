@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 description: Switch caveman intensity level (lite/full/ultra/wenyan)
 argument-hint: "[lite|full|ultra|wenyan]"
 ---
